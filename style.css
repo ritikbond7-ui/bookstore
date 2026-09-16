@@ -45,7 +45,7 @@ th {
 /* Top heading row */
 .top {
     background: linear-gradient(135deg, #7c3aed, #2563eb);
-    color: white;
+    color: yellow;
     font-weight: bold;
     font-size: 18px;
     letter-spacing: 0.5px;
@@ -67,7 +67,7 @@ th {
 /* Menu hover effect */
 .menu td:hover {
     background-color: #2563eb;
-    color: white;
+    color: yellow;
     cursor: pointer;
 }
 
@@ -94,7 +94,7 @@ input[type="password"] {
 input[type="text"]:focus,
 input[type="password"]:focus {
     border-color: #2563eb;
-    background-color: white;
+    background-color: yellow;
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
@@ -105,7 +105,7 @@ button {
     border: none;
     border-radius: 8px;
     background: linear-gradient(135deg, #2563eb, #7c3aed);
-    color: white;
+    color: yellow;
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s ease;
