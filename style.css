@@ -1,51 +1,181 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    min-height: 100vh;
+    color: #263238;
+
+    /* Beautiful page background */
+    background: linear-gradient(135deg, #dbeafe, #fef3c7, #fce7f3);
+    background-attachment: fixed;
 }
 
+/* Main content box */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 35px auto;
+    padding: 25px;
+    background-color: rgba(255, 255, 255, 0.94);
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Table design */
 table {
     border-collapse: collapse;
     width: 100%;
+    overflow: hidden;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-td, th {
-    border: 1px solid black;
-    padding: 8px;
+td,
+th {
+    border: 1px solid #d6dee8;
+    padding: 12px;
     text-align: center;
 }
 
+/* Top heading row */
 .top {
-    background-color: #e8c4a2;
+    background: linear-gradient(135deg, #7c3aed, #2563eb);
+    color: white;
     font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 0.5px;
 }
 
+/* Left-aligned content */
 .left {
     text-align: left;
 }
 
+/* Menu cells */
 .menu td {
-    background-color: #f5f5f5;
+    background-color: #eff6ff;
+    color: #1e3a8a;
+    font-weight: bold;
+    transition: 0.3s ease;
 }
 
-.container {
-    width: 90%;
-    margin: 20px auto;
+/* Menu hover effect */
+.menu td:hover {
+    background-color: #2563eb;
+    color: white;
+    cursor: pointer;
 }
 
+/* Table row hover effect */
+tr:hover td {
+    background-color: #f8fafc;
+}
+
+/* Input fields */
 input[type="text"],
 input[type="password"] {
-    width: 180px;
-    padding: 5px;
-    margin: 5px 0;
+    width: 220px;
+    padding: 10px 12px;
+    margin: 6px 0;
+    border: 1px solid #b8c4d3;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+    background-color: #f8fafc;
+    transition: 0.3s ease;
 }
 
+/* Input focus effect */
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #2563eb;
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Button */
 button {
-    padding: 5px 10px;
-    margin: 5px;
+    padding: 10px 18px;
+    margin: 6px;
+    border: none;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
 }
 
+/* Button hover effect */
+button:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(135deg, #1d4ed8, #6d28d9);
+    box-shadow: 0 5px 12px rgba(37, 99, 235, 0.35);
+}
+
+/* Book image */
 .book-img {
     width: 70px;
     height: 90px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid #dbeafe;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.18);
+    transition: 0.3s ease;
+}
+
+/* Book image hover */
+.book-img:hover {
+    transform: scale(1.08);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+/* Links */
+a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    color: #7c3aed;
+    text-decoration: underline;
+}
+
+/* Responsive design for mobile */
+@media screen and (max-width: 600px) {
+    .container {
+        width: 96%;
+        padding: 12px;
+        margin: 15px auto;
+    }
+
+    table {
+        font-size: 13px;
+    }
+
+    td,
+    th {
+        padding: 8px 5px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+        width: 100%;
+    }
+
+    .book-img {
+        width: 55px;
+        height: 75px;
+    }
+
+    button {
+        width: 100%;
+        margin: 5px 0;
+    }
 }
