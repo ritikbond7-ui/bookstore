@@ -147,35 +147,3 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Responsive design for mobile */
-@media screen and (max-width: 600px) {
-    .container {
-        width: 96%;
-        padding: 12px;
-        margin: 15px auto;
-    }
-
-    table {
-        font-size: 13px;
-    }
-
-    td,
-    th {
-        padding: 8px 5px;
-    }
-
-    input[type="text"],
-    input[type="password"] {
-        width: 100%;
-    }
-
-    .book-img {
-        width: 55px;
-        height: 75px;
-    }
-
-    button {
-        width: 100%;
-        margin: 5px 0;
-    }
-}
