@@ -1,0 +1,137 @@
+/* =====================================================================
+   styles.css - Online Bookstore (BCS353 Web Designing Workshop)
+   1) Variables 2) Base & fonts 3) Selector examples 4) Pseudo-class links
+   5) Frame layout (index.html) 6) Top & left frames 7) Components
+   8) Background-repeat demo
+   ===================================================================== */
+
+/* 1) CSS VARIABLES ---------------------------------------------------- */
+:root {
+  --peach: #fde7cf;          /* header colour (matches the lab sheet) */
+  --peach-border: #e3a768;
+  --navy: #14213d;
+  --teal: #0f766e;
+  --amber: #f2b705;
+  --muted: #5b6475;
+}
+
+/* 2) BASE & CUSTOM FONTS ---------------------------------------------- */
+body {
+  font-family: "Source Sans 3", "Segoe UI", Arial, sans-serif;  /* font-family */
+  font-size: 1rem;                                               /* font-size   */
+  font-style: normal;                                            /* font-style  */
+  color: #1d2433;                                                /* color       */
+  background-color: #fff;
+  line-height: 1.6;
+}
+h1, h2, h3, h4 { font-family: "Merriweather", Georgia, serif; color: var(--navy); }  /* grouping selector */
+.small-caps { font-variant: small-caps; letter-spacing: .04em; }
+
+/* 3) SELECTOR EXAMPLES ------------------------------------------------- */
+/* universal */            * { box-sizing: border-box; }
+/* element */              p { margin-bottom: .9rem; }
+/* class */                .highlight { background: var(--amber); padding: 0 .3rem; border-radius: 3px; }
+/* id */                   #welcome-title { border-bottom: 3px solid var(--teal); display: inline-block; }
+/* descendant */           .book-table td strong { color: var(--teal); }
+/* child (>) */            ul.clean > li { margin-bottom: .25rem; }
+/* attribute */            input[type="text"]:focus, input[type="password"]:focus { border-color: var(--teal); }
+/* adjacent sibling (+) */ h2 + p { color: var(--muted); }
+em.note { font-style: italic; color: var(--muted); }
+
+/* 4) PSEUDO-CLASS LINK STYLING (order matters: link, visited, hover, active) */
+a:link    { color: #0b5ed7; text-decoration: none; }       /* unvisited */
+a:visited { color: #6f42c1; }                               /* visited   */
+a:hover   { color: #d63384; text-decoration: underline; }  /* mouse over*/
+a:active  { color: #dc3545; }                               /* clicking  */
+.btn:link, .btn:visited, .btn:hover { color: inherit; text-decoration: none; }
+.btn-success:link, .btn-success:visited, .btn-dark:link, .btn-dark:visited { color: #fff; }
+
+/* 5) FRAME LAYOUT (index.html): top frame, left frame, right frame ----- */
+html.frames, body.frames-page { height: 100%; margin: 0; overflow: hidden; }
+.frame-layout {
+  display: grid; height: 100vh;
+  grid-template-columns: 20% 1fr;      /* left frame = 20% = width of the "Home" cell (5 equal nav cells) */
+  grid-template-rows: 108px 1fr auto;
+  grid-template-areas: "top top" "left content" "footer footer";
+}
+.frame-layout iframe { width: 100%; height: 100%; border: 0; display: block; }
+.f-top     { grid-area: top; border-bottom: 2px solid var(--peach-border) !important; }
+.f-left    { grid-area: left; border-right: 2px solid var(--peach-border) !important; }
+.f-content { grid-area: content; }
+@media (max-width: 767.98px) {                       /* phones: stack the frames */
+  .frame-layout { grid-template-columns: 1fr; grid-template-rows: 124px 64px 1fr auto;
+                  grid-template-areas: "top" "left" "content" "footer"; }
+  .f-left { border-right: 0 !important; border-bottom: 2px solid var(--peach-border) !important; }
+}
+
+/* Footer (contact details) - sits under all three frames */
+.site-footer { grid-area: footer; background: var(--peach); border-top: 2px solid var(--peach-border);
+               padding: .6rem 1rem; text-align: center; font-size: .92rem; line-height: 1.5; }
+.site-footer h2 { font-size: 1rem; margin: 0 0 .15rem; }
+.site-footer p { margin: 0; }
+.site-footer a:link, .site-footer a:visited { color: #222; }
+.site-footer a:hover { color: var(--teal); }
+
+/* 6) TOP FRAME (logo, site name, nav) and LEFT FRAME (branches) -------- */
+.top-page { margin: 0; background: var(--peach); }
+.top-brand { display: flex; align-items: center; gap: .75rem; padding: .4rem 1rem; border-bottom: 1px solid var(--peach-border); }
+.top-brand img { height: 52px; width: auto; flex: none; border-radius: 6px; }
+.top-brand .site-name { flex: 1; text-align: center; font-family: "Merriweather", Georgia, serif; font-weight: 700; font-size: 1.3rem; color: var(--navy); }
+.top-nav .nav-item { flex: 1 1 0; }                  /* equal-width cells */
+.top-nav .nav-link { border: 1px solid var(--peach-border); border-top: 0; padding: .45rem .2rem; font-weight: 600; text-align: center; font-size: .95rem; }
+.top-nav .nav-link:link, .top-nav .nav-link:visited { color: #222; }
+.top-nav .nav-link:hover  { background: #fff; color: var(--teal); text-decoration: none; }
+.top-nav .nav-link:active { color: #dc3545; }
+@media (max-width: 575.98px) {
+  .top-brand .site-name { font-size: 1rem; }
+  .top-nav .nav-link { font-size: .72rem; padding: .4rem .1rem; }
+}
+
+/* Left frame: plain text links stacked top to bottom, spread evenly, left-aligned (like the lab sheet).
+   NOTE: a media query inside an iframe looks at the IFRAME's size, not the browser window, so the
+   phone layout is chosen with max-height (the left frame is only ~64px tall when stacked on phones). */
+.left-page { margin: 0; background: #fff; padding: .75rem 1rem; }
+.branch-list { display: flex; flex-direction: column; justify-content: space-evenly; align-items: stretch;
+               min-height: calc(100vh - 1.5rem); }
+.branch-link {
+  display: block; text-align: center;                       /* text in the centre of each cell */
+  font-weight: 600; font-size: 1.05rem; padding: .7rem .5rem;
+  background: linear-gradient(to top, rgba(253, 231, 207, .95) 0, rgba(253, 231, 207, .95) 38%, transparent 38%);  /* soft peach highlight at the bottom */
+  border-bottom: 3px solid var(--peach-border);
+  transition: background-color .15s, color .15s;
+}
+.branch-link:link, .branch-link:visited { color: #222; }
+.branch-link:hover  { background: var(--peach); color: var(--teal); border-bottom-color: var(--teal); text-decoration: none; }
+.branch-link:active { color: #dc3545; }
+@media (max-height: 150px) {                        /* stacked layout on phones: one row of links */
+  .left-page { padding: .4rem 1rem; }
+  .branch-list { flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; min-height: 0; column-gap: 1rem; }
+  .branch-link { display: inline-block; padding: .3rem .8rem; font-size: .95rem; }
+}
+
+/* 7) COMPONENTS -------------------------------------------------------- */
+.content-page { padding: 1rem; background: #fff; text-align: center; }   /* headings and page content centred */
+.content-page form { text-align: left; }                              /* labels stay left inside forms */
+.content-page ul.clean { list-style: none; padding: 0; }
+.content-page .table th, .content-page .table td { text-align: center; }
+.content-page .table-responsive { max-width: 1000px; margin-inline: auto; }
+.hero { background: #fffaf3; border: 1px solid var(--peach-border); border-left: 6px solid var(--teal); border-radius: 6px; padding: 1.5rem; }
+.book-cover { width: 72px; height: 96px; border-radius: 3px; box-shadow: 2px 3px 6px rgba(0,0,0,.25); }
+.price { font-weight: 700; color: var(--teal); white-space: nowrap; }
+.table thead th { background: var(--peach); border-color: var(--peach-border); }
+.qty-input { width: 80px; }
+.form-error { color: #dc3545; font-size: .85rem; min-height: 1.1rem; }
+.pay-option { border: 1px solid #ced4da; border-radius: 6px; padding: .6rem .9rem; }
+
+/* 8) BACKGROUND IMAGE + background-repeat demo (css-demo.html) ---------- */
+.bg-box {
+  height: 110px; border: 2px solid var(--navy); border-radius: 6px;
+  display: flex; align-items: flex-end; padding: .4rem .6rem; font-weight: 600;
+  background-color: #dfe6f5;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28'><rect width='28' height='28' rx='6' fill='%230f766e'/><text x='14' y='19' font-size='14' text-anchor='middle' fill='white'>B</text></svg>");
+  background-position: top left;
+}
+.bg-repeat    { background-repeat: repeat; }      /* tiles both ways (default) */
+.bg-repeat-x  { background-repeat: repeat-x; }    /* horizontal only           */
+.bg-repeat-y  { background-repeat: repeat-y; }    /* vertical only             */
+.bg-no-repeat { background-repeat: no-repeat; }   /* shown once                */

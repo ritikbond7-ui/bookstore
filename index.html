@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" class="frames">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bookstore</title>
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body class="frames-page">
+<!-- FRAME STRUCTURE (as in the lab sheet)
+     top frame     : logo, web site name, links (Home, Login, Registration, Catalogue, Cart)
+     left frame    : branch links (CSE, ECE, EEE, CIVIL)
+     right frame   : named "content". Every link in the top/left frames uses target="content",
+                     so the page it points to loads in the right frame.
+     <frameset> is obsolete in HTML5, so we use <iframe> elements arranged with CSS Grid. -->
+<div class="frame-layout">
+  <iframe class="f-top"     name="top"     src="top.html"  title="Header and navigation"></iframe>
+  <iframe class="f-left"    name="left"    src="left.html" title="Branches"></iframe>
+  <iframe class="f-content" name="content" src="home.html" title="Page content"></iframe>
+  <!-- FOOTER: contact details -->
+  <footer class="site-footer">
+    <h2>Contact</h2>
+    <p><strong>Name:</strong> Raghubir Kumar &nbsp;|&nbsp; <strong>Mob:</strong> <a href="tel:7322820495">7322820495</a></p>
+    <p><strong>Address:</strong> GL Bajaj Institute of Technology And Management, Greater Noida</p>
+  </footer>
+</div>
+</body>
+</html>
