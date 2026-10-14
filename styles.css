@@ -21,7 +21,8 @@ body {
   font-size: 1rem;                                               /* font-size   */
   font-style: normal;                                            /* font-style  */
   color: #1d2433;                                                /* color       */
-  background-color: #fff;
+  background: linear-gradient(160deg, #fff8ec 0%, #fde7cf 45%, #e8f0fe 100%);  /* warm gradient page background */
+  background-attachment: fixed;
   line-height: 1.6;
 }
 h1, h2, h3, h4 { font-family: "Merriweather", Georgia, serif; color: var(--navy); }  /* grouping selector */
@@ -65,7 +66,7 @@ html.frames, body.frames-page { height: 100%; margin: 0; overflow: hidden; }
 }
 
 /* Footer (contact details) - sits under all three frames */
-.site-footer { grid-area: footer; background: var(--peach); border-top: 2px solid var(--peach-border);
+.site-footer { grid-area: footer; background: linear-gradient(90deg, var(--peach), #ffd9a8); border-top: 2px solid var(--peach-border);
                padding: .6rem 1rem; text-align: center; font-size: .92rem; line-height: 1.5; }
 .site-footer h2 { font-size: 1rem; margin: 0 0 .15rem; }
 .site-footer p { margin: 0; }
@@ -73,12 +74,12 @@ html.frames, body.frames-page { height: 100%; margin: 0; overflow: hidden; }
 .site-footer a:hover { color: var(--teal); }
 
 /* 6) TOP FRAME (logo, site name, nav) and LEFT FRAME (branches) -------- */
-.top-page { margin: 0; background: var(--peach); }
+.top-page { margin: 0; background: linear-gradient(90deg, #fde7cf, #ffd9a8); }
 .top-brand { display: flex; align-items: center; gap: .75rem; padding: .4rem 1rem; border-bottom: 1px solid var(--peach-border); }
 .top-brand img { height: 52px; width: auto; flex: none; border-radius: 6px; }
 .top-brand .site-name { flex: 1; text-align: center; font-family: "Merriweather", Georgia, serif; font-weight: 700; font-size: 1.3rem; color: var(--navy); }
 .top-nav .nav-item { flex: 1 1 0; }                  /* equal-width cells */
-.top-nav .nav-link { border: 1px solid var(--peach-border); border-top: 0; padding: .45rem .2rem; font-weight: 600; text-align: center; font-size: .95rem; }
+.top-nav .nav-link { border: 1px solid var(--peach-border); border-radius: 999px; margin: .35rem .25rem; background: rgba(255,255,255,.55); padding: .45rem .2rem; font-weight: 600; text-align: center; font-size: .95rem; }
 .top-nav .nav-link:link, .top-nav .nav-link:visited { color: #222; }
 .top-nav .nav-link:hover  { background: #fff; color: var(--teal); text-decoration: none; }
 .top-nav .nav-link:active { color: #dc3545; }
@@ -90,18 +91,20 @@ html.frames, body.frames-page { height: 100%; margin: 0; overflow: hidden; }
 /* Left frame: plain text links stacked top to bottom, spread evenly, left-aligned (like the lab sheet).
    NOTE: a media query inside an iframe looks at the IFRAME's size, not the browser window, so the
    phone layout is chosen with max-height (the left frame is only ~64px tall when stacked on phones). */
-.left-page { margin: 0; background: #fff; padding: .75rem 1rem; }
+.left-page { margin: 0; background: linear-gradient(180deg, #fffaf3, #fde7cf); padding: .75rem 1rem; }
 .branch-list { display: flex; flex-direction: column; justify-content: space-evenly; align-items: stretch;
                min-height: calc(100vh - 1.5rem); }
 .branch-link {
   display: block; text-align: center;                       /* text in the centre of each cell */
   font-weight: 600; font-size: 1.05rem; padding: .7rem .5rem;
-  background: linear-gradient(to top, rgba(253, 231, 207, .95) 0, rgba(253, 231, 207, .95) 38%, transparent 38%);  /* soft peach highlight at the bottom */
-  border-bottom: 3px solid var(--peach-border);
-  transition: background-color .15s, color .15s;
+  background: linear-gradient(180deg, #ffffff, var(--peach));  /* soft peach capsule fill */
+  border: 2px solid var(--peach-border);
+  border-radius: 999px;                                     /* capsule / pill shape */
+  box-shadow: 0 2px 6px rgba(20,33,61,.12);
+  transition: background-color .15s, color .15s, transform .15s;
 }
 .branch-link:link, .branch-link:visited { color: #222; }
-.branch-link:hover  { background: var(--peach); color: var(--teal); border-bottom-color: var(--teal); text-decoration: none; }
+.branch-link:hover  { background: var(--peach); color: var(--teal); border-color: var(--teal); transform: translateY(-2px); text-decoration: none; }
 .branch-link:active { color: #dc3545; }
 @media (max-height: 150px) {                        /* stacked layout on phones: one row of links */
   .left-page { padding: .4rem 1rem; }
@@ -110,18 +113,33 @@ html.frames, body.frames-page { height: 100%; margin: 0; overflow: hidden; }
 }
 
 /* 7) COMPONENTS -------------------------------------------------------- */
-.content-page { padding: 1rem; background: #fff; text-align: center; }   /* headings and page content centred */
+.content-page { padding: 1rem; background: rgba(255,255,255,.65); text-align: center; }   /* headings and page content centred */
 .content-page form { text-align: left; }                              /* labels stay left inside forms */
 .content-page ul.clean { list-style: none; padding: 0; }
 .content-page .table th, .content-page .table td { text-align: center; }
 .content-page .table-responsive { max-width: 1000px; margin-inline: auto; }
-.hero { background: #fffaf3; border: 1px solid var(--peach-border); border-left: 6px solid var(--teal); border-radius: 6px; padding: 1.5rem; }
+.hero { background: linear-gradient(135deg, #fffaf3, #fde7cf); border: 1px solid var(--peach-border); border-left: 6px solid var(--teal); border-radius: 16px; padding: 1.5rem; box-shadow: 0 4px 14px rgba(20,33,61,.10); }
 .book-cover { width: 72px; height: 96px; border-radius: 3px; box-shadow: 2px 3px 6px rgba(0,0,0,.25); }
 .price { font-weight: 700; color: var(--teal); white-space: nowrap; }
 .table thead th { background: var(--peach); border-color: var(--peach-border); }
 .qty-input { width: 80px; }
 .form-error { color: #dc3545; font-size: .85rem; min-height: 1.1rem; }
 .pay-option { border: 1px solid #ced4da; border-radius: 6px; padding: .6rem .9rem; }
+
+/* 7b) BUTTONS - pill shape, soft shadow, centred in forms ------------- */
+.btn {
+  border-radius: 999px;                       /* pill / capsule shape */
+  padding: .55rem 1.5rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  box-shadow: 0 3px 8px rgba(20,33,61,.18);
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.btn:hover  { transform: translateY(-2px); box-shadow: 0 6px 14px rgba(20,33,61,.22); }
+.btn:active { transform: translateY(0); }
+.btn-sm { padding: .35rem 1.1rem; }           /* small buttons stay proportionate */
+/* position: form action buttons sit centred under their form */
+.content-page form .btn { display: block; width: fit-content; margin: .9rem auto 0; }
 
 /* 8) BACKGROUND IMAGE + background-repeat demo (css-demo.html) ---------- */
 .bg-box {
