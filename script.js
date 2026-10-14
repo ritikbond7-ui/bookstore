@@ -115,11 +115,10 @@ function initCart() {
 
 /* 6) VALIDATION RULES --------------------------------------------------
    REGEX CHEAT-SHEET:  ^ start   $ end   [A-Za-z] a letter   \d a digit
-   {6,} six or more   {10} exactly ten   [^\s@]+ one or more chars that are not space or @ */
+   {6,} six or more   {2,} two or more   [^\s@]+ one or more chars that are not space or @ */
 const RULES = {
-  name:  { re: /^[A-Za-z]{6,}$/,                   msg: "Name must be alphabets only, at least 6 letters (no spaces or digits)." },
-  email: { re: /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/,  msg: "Enter a valid email like name@domain.com." },
-  phone: { re: /^\d{10}$/,                         msg: "Phone number must be exactly 10 digits." }
+  name:  { re: /^[A-Za-z ]{6,}$/,                  msg: "Name must be at least 6 letters (alphabets only)." },
+  email: { re: /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/,  msg: "Enter a valid email like name@domain.com." }
 };
 function setError(id, message) {
   const field = $(id), err = $(id + "-error");
@@ -135,43 +134,21 @@ function setError(id, message) {
 function initRegister() {
   const form = $("register-form");
   if (!form) return;
-  const day = $("dob-day"), month = $("dob-month"), year = $("dob-year");
-  const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
-  day.innerHTML   = `<option value="">Day</option>`   + Array.from({ length: 31 }, (_, i) => `<option>${i + 1}</option>`).join("");
-  month.innerHTML = `<option value="">Month</option>` + months.map((m, i) => `<option value="${i + 1}">${m}</option>`).join("");
-  const y0 = new Date().getFullYear();
-  year.innerHTML  = `<option value="">Year</option>`  + Array.from({ length: 70 }, (_, i) => `<option>${y0 - 10 - i}</option>`).join("");
 
+  /* one small check for each field - returns true when the field is OK */
   const checks = {
     name:     () => setError("name", RULES.name.re.test($("name").value.trim()) ? "" : RULES.name.msg),
-    password: () => setError("password", $("password").value.length >= 6 ? "" : "Password must be at least 6 characters."),
     email:    () => setError("email", RULES.email.re.test($("email").value.trim()) ? "" : RULES.email.msg),
-    phone:    () => setError("phone", RULES.phone.re.test($("phone").value.trim()) ? "" : RULES.phone.msg),
-    address:  () => setError("address", $("address").value.trim().length >= 5 ? "" : "Please enter your address."),
-    sex: () => {
-      const ok = !!form.querySelector("input[name='sex']:checked");
-      $("sex-error").textContent = ok ? "" : "Please select one option.";
-      return ok;
-    },
-    dob: () => {
-      const d = +day.value, m = +month.value, y = +year.value;
-      let msg = "";
-      if (!d || !m || !y) msg = "Select day, month and year.";
-      else if (new Date(y, m - 1, d).getMonth() !== m - 1) msg = "This date does not exist.";   /* 31 Feb rolls into March */
-      $("dob-error").textContent = msg;
-      return !msg;
-    },
-    languages: () => {
-      const ok = form.querySelectorAll("input[name='lang']:checked").length > 0;
-      $("lang-error").textContent = ok ? "" : "Select at least one language.";
-      return ok;
-    }
+    password: () => setError("password", $("password").value.length >= 6 ? "" : "Password must be at least 6 characters.")
   };
-  ["name", "password", "email", "phone", "address"].forEach(k => $(k).addEventListener("input", checks[k]));
+
+  /* check a field again while the user types in it */
+  ["name", "email", "password"].forEach(k => $(k).addEventListener("input", checks[k]));
+
   form.addEventListener("submit", e => {
     e.preventDefault();
-    const results = Object.values(checks).map(fn => fn());      /* run all checks so every error shows */
-    if (results.every(Boolean)) { $("success-box").classList.remove("d-none"); form.classList.add("d-none"); }
+    const allOk = Object.values(checks).map(fn => fn()).every(Boolean);   /* run all checks so every error shows */
+    if (allOk) { $("success-box").classList.remove("d-none"); form.classList.add("d-none"); }
   });
   form.addEventListener("reset", () => {
     form.querySelectorAll(".is-valid,.is-invalid").forEach(el => el.classList.remove("is-valid", "is-invalid"));
