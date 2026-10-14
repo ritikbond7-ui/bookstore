@@ -130,6 +130,13 @@ html.frames, body.frames-page { height: 100%; margin: 0; overflow: hidden; }
 .hero h1, .hero h2, .hero h3 { color: var(--cream); }
 .hero .btn-outline-dark { color: var(--cream); border-color: var(--cream); }
 .hero .btn-outline-dark:hover { background: var(--cream); color: var(--ink); }
+.hero h1 { font-size: 2.3rem; }
+ul.hero-points { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; margin: 1.4rem 0 .4rem; text-align: left; }
+ul.hero-points > li { background: rgba(255,255,255,.07); border: 1.5px solid rgba(247,239,221,.28); border-radius: 14px; padding: .8rem 1rem; margin: 0; }
+.hero-actions { margin-top: 1.3rem; }
+.hero-stats { display: flex; justify-content: center; gap: 2.2rem; flex-wrap: wrap; margin-top: 1.6rem; padding-top: 1.1rem; border-top: 1px solid rgba(247,239,221,.25); font-size: .98rem; }
+.hero-stats strong { color: var(--accent); font-size: 1.35rem; margin-right: .3rem; }
+@media (max-width: 575.98px) { ul.hero-points { grid-template-columns: 1fr; } .hero h1 { font-size: 1.7rem; } }
 .card { border: 2px solid var(--line); border-radius: 18px; box-shadow: 6px 6px 0 rgba(23,32,58,.14); }
 .book-cover { width: 76px; height: 100px; border-radius: 8px; box-shadow: 3px 4px 8px rgba(0,0,0,.3); }
 .price { font-weight: 700; color: var(--accent-dark); white-space: nowrap; }
@@ -152,6 +159,29 @@ html.frames, body.frames-page { height: 100%; margin: 0; overflow: hidden; }
 .btn-sm { padding: .38rem 1.1rem; }           /* small buttons stay proportionate */
 /* position: form action buttons sit centred under their form */
 .content-page form .btn { display: block; width: fit-content; margin: .9rem auto 0; }
+/* button colours - orange primary, navy secondary (theme colours) */
+.btn-success, .btn-primary {
+  --bs-btn-bg: var(--accent); --bs-btn-border-color: var(--accent); --bs-btn-color: #fff;
+  --bs-btn-hover-bg: var(--accent-dark); --bs-btn-hover-border-color: var(--accent-dark); --bs-btn-hover-color: #fff;
+  --bs-btn-active-bg: var(--accent-dark); --bs-btn-active-border-color: var(--accent-dark); --bs-btn-active-color: #fff;
+  --bs-btn-disabled-bg: var(--accent); --bs-btn-disabled-border-color: var(--accent); --bs-btn-disabled-color: #fff;
+}
+.btn-warning {
+  --bs-btn-bg: var(--ink); --bs-btn-border-color: var(--ink); --bs-btn-color: var(--cream);
+  --bs-btn-hover-bg: var(--ink-soft); --bs-btn-hover-border-color: var(--ink-soft); --bs-btn-hover-color: var(--cream);
+  --bs-btn-active-bg: var(--ink-soft); --bs-btn-active-border-color: var(--ink-soft); --bs-btn-active-color: var(--cream);
+  --bs-btn-disabled-bg: var(--ink); --bs-btn-disabled-border-color: var(--ink); --bs-btn-disabled-color: var(--cream);
+}
+.btn-outline-dark {
+  --bs-btn-color: var(--ink); --bs-btn-border-color: var(--ink);
+  --bs-btn-hover-bg: var(--ink); --bs-btn-hover-color: var(--cream); --bs-btn-hover-border-color: var(--ink);
+  --bs-btn-active-bg: var(--ink); --bs-btn-active-color: var(--cream); --bs-btn-active-border-color: var(--ink);
+}
+.btn-outline-secondary {
+  --bs-btn-color: #4b5563; --bs-btn-border-color: #9ca3af;
+  --bs-btn-hover-bg: #4b5563; --bs-btn-hover-color: #fff; --bs-btn-hover-border-color: #4b5563;
+  --bs-btn-active-bg: #4b5563; --bs-btn-active-color: #fff; --bs-btn-active-border-color: #4b5563;
+}
 
 /* 9) BACKGROUND IMAGE + background-repeat demo (css-demo.html) ---------- */
 .bg-box {
