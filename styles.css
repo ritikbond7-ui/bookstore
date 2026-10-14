@@ -22,7 +22,6 @@ body {
   font-style: normal;                                            /* font-style  */
   color: #1d2433;                                                /* color       */
   background: linear-gradient(160deg, #fff8ec 0%, #fde7cf 45%, #e8f0fe 100%);  /* warm gradient page background */
-  background-attachment: fixed;
   line-height: 1.6;
 }
 h1, h2, h3, h4 { font-family: "Merriweather", Georgia, serif; color: var(--navy); }  /* grouping selector */
@@ -52,7 +51,7 @@ html.frames, body.frames-page { height: 100%; margin: 0; overflow: hidden; }
 .frame-layout {
   display: grid; height: 100vh;
   grid-template-columns: 20% 1fr;      /* left frame = 20% = width of the "Home" cell (5 equal nav cells) */
-  grid-template-rows: 108px 1fr auto;
+  grid-template-rows: 128px 1fr auto;
   grid-template-areas: "top top" "left content" "footer footer";
 }
 .frame-layout iframe { width: 100%; height: 100%; border: 0; display: block; }
@@ -60,7 +59,7 @@ html.frames, body.frames-page { height: 100%; margin: 0; overflow: hidden; }
 .f-left    { grid-area: left; border-right: 2px solid var(--peach-border) !important; }
 .f-content { grid-area: content; }
 @media (max-width: 767.98px) {                       /* phones: stack the frames */
-  .frame-layout { grid-template-columns: 1fr; grid-template-rows: 124px 64px 1fr auto;
+  .frame-layout { grid-template-columns: 1fr; grid-template-rows: 140px 64px 1fr auto;
                   grid-template-areas: "top" "left" "content" "footer"; }
   .f-left { border-right: 0 !important; border-bottom: 2px solid var(--peach-border) !important; }
 }
@@ -74,12 +73,12 @@ html.frames, body.frames-page { height: 100%; margin: 0; overflow: hidden; }
 .site-footer a:hover { color: var(--teal); }
 
 /* 6) TOP FRAME (logo, site name, nav) and LEFT FRAME (branches) -------- */
-.top-page { margin: 0; background: linear-gradient(90deg, #fde7cf, #ffd9a8); }
+.top-page { margin: 0; background: linear-gradient(90deg, #fde7cf, #ffd9a8); overflow: hidden; }
 .top-brand { display: flex; align-items: center; gap: .75rem; padding: .4rem 1rem; border-bottom: 1px solid var(--peach-border); }
 .top-brand img { height: 52px; width: auto; flex: none; border-radius: 6px; }
 .top-brand .site-name { flex: 1; text-align: center; font-family: "Merriweather", Georgia, serif; font-weight: 700; font-size: 1.3rem; color: var(--navy); }
 .top-nav .nav-item { flex: 1 1 0; }                  /* equal-width cells */
-.top-nav .nav-link { border: 1px solid var(--peach-border); border-radius: 999px; margin: .35rem .25rem; background: rgba(255,255,255,.55); padding: .45rem .2rem; font-weight: 600; text-align: center; font-size: .95rem; }
+.top-nav .nav-link { border: 1px solid var(--peach-border); border-radius: 999px; margin: .25rem .25rem; background: rgba(255,255,255,.55); padding: .38rem .2rem; font-weight: 600; text-align: center; font-size: .95rem; }
 .top-nav .nav-link:link, .top-nav .nav-link:visited { color: #222; }
 .top-nav .nav-link:hover  { background: #fff; color: var(--teal); text-decoration: none; }
 .top-nav .nav-link:active { color: #dc3545; }
