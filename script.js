@@ -156,13 +156,11 @@ function initRegister() {
     name:     () => setError("name", RULES.name.re.test($("name").value.trim()) ? "" : RULES.name.msg),
     email:    () => setError("email", RULES.email.re.test($("email").value.trim()) ? "" : RULES.email.msg),
     password: () => setError("password", $("password").value.length >= 6 ? "" : "Password should not be less than 6 characters."),
-    phone:    () => setError("phone", RULES.phone.re.test($("phone").value.trim()) ? "" : RULES.phone.msg),
-    dob:      () => setError("dob", ($("dob-day").value && $("dob-month").value && $("dob-year").value) ? "" : "Please select your date of birth.")
+    phone:    () => setError("phone", RULES.phone.re.test($("phone").value.trim()) ? "" : RULES.phone.msg)
   };
 
   /* check a field again while the user types in it */
   ["name", "email", "password", "phone"].forEach(k => $(k).addEventListener("input", checks[k]));
-  ["dob-day", "dob-month", "dob-year"].forEach(id => $(id).addEventListener("change", checks.dob));
 
   form.addEventListener("submit", e => {
     e.preventDefault();
