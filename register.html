@@ -17,7 +17,9 @@
 <!-- Green box shown after a successful registration (hidden at first) -->
 <div class="alert alert-success d-none" id="success-box"><strong>Registration successful!</strong> You can now use the Login link.</div>
 
-<!-- Simple registration form: only 3 fields - name, email, password.
+<!-- Registration form with the 8 fields of the lab sheet, in the same order:
+     1 Name (text)  2 Password (password)  3 E-mail ID (text)  4 Phone Number (text)
+     5 Sex (radio)  6 Date of birth (3 select boxes)  7 Languages known (checkboxes)  8 Address (text area)
      novalidate switches off the browser's own popups so OUR JavaScript messages show. -->
 <form id="register-form" novalidate class="card card-body col-md-6 mx-auto">
 
@@ -28,15 +30,72 @@
   </div>
 
   <div class="mb-3">
-    <label class="form-label" for="email">Email ID</label>
-    <input class="form-control" id="email" type="email" autocomplete="email" placeholder="name@domain.com">
+    <label class="form-label" for="password">Password</label>
+    <input class="form-control" id="password" type="password" autocomplete="new-password" placeholder="Min 6 characters">
+    <div class="form-error" id="password-error"></div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="email">E-mail ID</label>
+    <input class="form-control" id="email" type="text" autocomplete="email" placeholder="name@domain.com">
     <div class="form-error" id="email-error"></div>
   </div>
 
   <div class="mb-3">
-    <label class="form-label" for="password">Password</label>
-    <input class="form-control" id="password" type="password" autocomplete="new-password" placeholder="Min 6 characters">
-    <div class="form-error" id="password-error"></div>
+    <label class="form-label" for="phone">Phone Number</label>
+    <input class="form-control" id="phone" type="text" autocomplete="tel" placeholder="10 digits only">
+    <div class="form-error" id="phone-error"></div>
+  </div>
+
+  <div class="mb-3">
+    <span class="form-label d-block">Sex</span>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="sex" id="sex-male" value="Male">
+      <label class="form-check-label" for="sex-male">Male</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="sex" id="sex-female" value="Female">
+      <label class="form-check-label" for="sex-female">Female</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="radio" name="sex" id="sex-other" value="Other">
+      <label class="form-check-label" for="sex-other">Other</label>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="dob-day">Date of Birth</label>
+    <div class="d-flex gap-2">
+      <select class="form-select" id="dob-day"><option value="">Day</option></select>
+      <select class="form-select" id="dob-month"><option value="">Month</option></select>
+      <select class="form-select" id="dob-year"><option value="">Year</option></select>
+    </div>
+    <div class="form-error" id="dob-error"></div>
+  </div>
+
+  <div class="mb-3">
+    <span class="form-label d-block">Languages Known</span>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" name="lang" id="lang-english" value="English">
+      <label class="form-check-label" for="lang-english">English</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" name="lang" id="lang-telugu" value="Telugu">
+      <label class="form-check-label" for="lang-telugu">Telugu</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" name="lang" id="lang-hindi" value="Hindi">
+      <label class="form-check-label" for="lang-hindi">Hindi</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" name="lang" id="lang-tamil" value="Tamil">
+      <label class="form-check-label" for="lang-tamil">Tamil</label>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label" for="address">Address</label>
+    <textarea class="form-control" id="address" rows="3" autocomplete="street-address"></textarea>
   </div>
 
   <div class="d-flex gap-2">

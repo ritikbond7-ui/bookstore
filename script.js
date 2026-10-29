@@ -118,7 +118,8 @@ function initCart() {
    {6,} six or more   {2,} two or more   [^\s@]+ one or more chars that are not space or @ */
 const RULES = {
   name:  { re: /^[A-Za-z ]{6,}$/,                  msg: "Name must be at least 6 letters (alphabets only)." },
-  email: { re: /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/,  msg: "Enter a valid email like name@domain.com." }
+  email: { re: /^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/,  msg: "Enter a valid email like name@domain.com." },
+  phone: { re: /^\d{10}$/,                         msg: "Phone number should contain 10 digits only." }
 };
 function setError(id, message) {
   const field = $(id), err = $(id + "-error");
@@ -135,15 +136,33 @@ function initRegister() {
   const form = $("register-form");
   if (!form) return;
 
+  /* Date of birth: fill the three select boxes - days 1-31, months Jan-Dec,
+     years (students are about 17-35 years old) */
+  const fillSelect = (id, items) => {
+    const sel = $(id);
+    items.forEach(([v, t]) => {
+      const opt = document.createElement("option");
+      opt.value = v; opt.textContent = t;
+      sel.appendChild(opt);
+    });
+  };
+  fillSelect("dob-day", Array.from({ length: 31 }, (_, i) => [i + 1, i + 1]));
+  fillSelect("dob-month", ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].map((m, i) => [i + 1, m]));
+  const thisYear = new Date().getFullYear();
+  fillSelect("dob-year", Array.from({ length: 36 }, (_, i) => [thisYear - 17 - i, thisYear - 17 - i]));
+
   /* one small check for each field - returns true when the field is OK */
   const checks = {
     name:     () => setError("name", RULES.name.re.test($("name").value.trim()) ? "" : RULES.name.msg),
     email:    () => setError("email", RULES.email.re.test($("email").value.trim()) ? "" : RULES.email.msg),
-    password: () => setError("password", $("password").value.length >= 6 ? "" : "Password must be at least 6 characters.")
+    password: () => setError("password", $("password").value.length >= 6 ? "" : "Password should not be less than 6 characters."),
+    phone:    () => setError("phone", RULES.phone.re.test($("phone").value.trim()) ? "" : RULES.phone.msg),
+    dob:      () => setError("dob", ($("dob-day").value && $("dob-month").value && $("dob-year").value) ? "" : "Please select your date of birth.")
   };
 
   /* check a field again while the user types in it */
-  ["name", "email", "password"].forEach(k => $(k).addEventListener("input", checks[k]));
+  ["name", "email", "password", "phone"].forEach(k => $(k).addEventListener("input", checks[k]));
+  ["dob-day", "dob-month", "dob-year"].forEach(id => $(id).addEventListener("change", checks.dob));
 
   form.addEventListener("submit", e => {
     e.preventDefault();

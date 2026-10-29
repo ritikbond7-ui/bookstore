@@ -85,6 +85,7 @@ html.frames, body.frames-page { height: 100%; margin: 0; overflow: hidden; }
 .top-brand { display: flex; align-items: center; gap: .8rem; padding: .35rem 1rem; border-bottom: 1px solid rgba(247,239,221,.25); }
 .top-brand img { height: 56px; width: auto; flex: none; border-radius: 12px; border: 2px solid var(--accent); }
 .top-brand .site-name { flex: 1; text-align: center; font-family: "Merriweather", Georgia, serif; font-weight: 700; font-size: 1.5rem; letter-spacing: .03em; color: var(--cream); }
+.top-brand .college-name { font-family: "Source Sans 3", Arial, sans-serif; font-size: .72rem; font-weight: 400; letter-spacing: .05em; color: #e9e2d0; }
 .top-nav .nav-item { flex: 1 1 0; }                  /* equal-width cells */
 .top-nav .nav-link { border: 1.5px solid rgba(247,239,221,.45); border-radius: 999px; margin: .2rem .25rem; background: rgba(255,255,255,.06); padding: .32rem .2rem; font-weight: 600; text-align: center; font-size: .95rem; }
 .top-nav .nav-link:link, .top-nav .nav-link:visited { color: var(--cream); }
@@ -195,3 +196,11 @@ ul.hero-points > li { background: rgba(255,255,255,.07); border: 1.5px solid rgb
 .bg-repeat-x  { background-repeat: repeat-x; }    /* horizontal only           */
 .bg-repeat-y  { background-repeat: repeat-y; }    /* vertical only             */
 .bg-no-repeat { background-repeat: no-repeat; }   /* shown once                */
+
+/* Experiment 8: background image for the WHOLE PAGE (css-demo.html).
+   The .bg-box rule above is the same thing for a single element. */
+.content-page.css-demo-page {
+  background-color: #f7f2e4;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='56'><text x='6' y='24' font-size='15' fill='%23d8cfae'>B</text><text x='34' y='52' font-size='15' fill='%23e3dcc0'>B</text></svg>");
+  background-repeat: repeat;
+}
